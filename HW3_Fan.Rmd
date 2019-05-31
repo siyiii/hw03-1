@@ -1,0 +1,138 @@
+---
+title: "HW3"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+load("TSvectors_2016data_011918.RData")
+install.packages("forecast", repos = "http://cran.us.r-project.org",dependencies = TRUE)
+install.packages("lmtest", repos = "http://cran.us.r-project.org", dependencies = TRUE)
+require(forecast)
+require(lmtest)
+```
+
+```{r}
+## RACE-Implicit
+## first subset to TEST/TRAIN
+race.WtsTRAIN <- window(race.Wts, start = c(2007,1), end = c(2014, 12))
+race.WtsTRAIN
+
+race.WtsTEST <- window(race.Wts, start = c(2015, 1))
+race.WtsTEST
+
+race.arimaTRAIN <- auto.arima(race.WtsTRAIN, stepwise = FALSE, approximation = FALSE)
+race.arimaTRAIN 
+
+forecast.raceTRAIN <- forecast(race.arimaTRAIN, h = 24)
+
+plot(forecast.raceTRAIN)
+lines(race.WtsTEST, col = "red")
+
+accuracy(forecast.raceTRAIN, race.WtsTEST)
+```
+
+```{r}
+## RACE-Explicit
+## first subset to TEST/TRAIN
+race.WEtsTRAIN <- window(race.WEts, start = c(2007,1), end = c(2014, 12))
+race.WEtsTRAIN
+
+race.WEtsTEST <- window(race.WEts, start = c(2015, 1))
+race.WEtsTEST
+
+race.arimaTRAINE <- auto.arima(race.WEtsTRAIN, stepwise = FALSE, approximation = FALSE)
+race.arimaTRAINE 
+
+forecast.raceTRAINE <- forecast(race.arimaTRAINE, h = 24)
+
+plot(forecast.raceTRAINE)
+lines(race.WEtsTEST, col = "red")
+
+accuracy(forecast.raceTRAINE, race.WEtsTEST)
+
+```
+
+```{r}
+## Sex-Implicit
+## first subset to TEST/TRAIN
+sex.WtsTRAIN <- window(sex.Wts, start = c(2007,1), end = c(2014, 12))
+sex.WtsTRAIN
+
+sex.WtsTEST <- window(sex.Wts, start = c(2015, 1))
+sex.WtsTEST
+
+sex.arimaTRAIN <- auto.arima(sex.WtsTRAIN, stepwise = FALSE, approximation = FALSE)
+sex.arimaTRAIN 
+
+forecast.sexTRAIN <- forecast(sex.arimaTRAIN, h = 24)
+
+plot(forecast.sexTRAIN)
+lines(sex.WtsTEST, col = "red")
+
+accuracy(forecast.sexTRAIN, sex.WtsTEST)
+```
+
+```{r}
+## Sex-Explicit
+## first subset to TEST/TRAIN
+sex.WEtsTRAIN <- window(sex.WEts, start = c(2007,1), end = c(2014, 12))
+sex.WEtsTRAIN
+
+sex.WEtsTEST <- window(sex.WEts, start = c(2015, 1))
+sex.WEtsTEST
+
+sex.arimaTRAINE <- auto.arima(sex.WEtsTRAIN, stepwise = FALSE, approximation = FALSE)
+sex.arimaTRAINE 
+
+forecast.sexTRAINE <- forecast(sex.arimaTRAINE, h = 24)
+
+plot(forecast.sexTRAINE)
+lines(sex.WEtsTEST, col = "red")
+
+accuracy(forecast.sexTRAINE, sex.WEtsTEST)
+```
+
+```{r}
+## SKIN-Implicit
+## first subset to TEST/TRAIN
+skin.WtsTRAIN <- window(skin.Wts, start = c(2007,1), end = c(2014, 12))
+skin.WtsTRAIN
+
+skin.WtsTEST <- window(skin.Wts, start = c(2015, 1))
+skin.WtsTEST
+
+skin.arimaTRAIN <- auto.arima(skin.WtsTRAIN, stepwise = FALSE, approximation = FALSE)
+skin.arimaTRAIN 
+
+forecast.skinTRAIN <- forecast(skin.arimaTRAIN, h = 24)
+
+plot(forecast.skinTRAIN)
+lines(skin.WtsTEST, col = "red")
+
+accuracy(forecast.skinTRAIN, skin.WtsTEST)
+```
+
+```{r}
+## SKIN-Explicit
+## first subset to TEST/TRAIN
+skin.WEtsTRAIN <- window(skin.WEts, start = c(2007,1), end = c(2014, 12))
+skin.WEtsTRAIN
+
+skin.WEtsTEST <- window(skin.WEts, start = c(2015, 1))
+skin.WEtsTEST
+
+skin.arimaTRAINE <- auto.arima(skin.WEtsTRAIN, stepwise = FALSE, approximation = FALSE)
+skin.arimaTRAINE 
+
+forecast.skinTRAINE <- forecast(skin.arimaTRAINE, h = 24)
+
+plot(forecast.skinTRAINE)
+lines(skin.WEtsTEST, col = "red")
+
+accuracy(forecast.skinTRAINE, skin.WEtsTEST)
+```
